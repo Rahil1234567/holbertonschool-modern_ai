@@ -12,7 +12,7 @@ def Agglomerative_Clustering(X, n_clusters, random_state=None,
     Performs Agglomerative hierarchical clustering.
 
     Args:
-        X (numpy.ndarray): Tabular data.
+        X (numpy.ndarray): Tabular data of shape (n_samples, n_features).
         n_clusters (int): Number of clusters.
         random_state (int): Seed for reproducibility.
         n_components (int): PCA components to reduce to.
