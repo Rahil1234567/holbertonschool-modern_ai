@@ -1,0 +1,23 @@
+name: Make Files Executable
+
+on:
+  workflow_dispatch: # Allows you to run this manually with a button click
+
+jobs:
+  chmod:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Make python files executable
+        run: |
+          chmod +x machine_learning/unsupervised_learning/*.py
+
+      - name: Commit and push changes
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git add machine_learning/unsupervised_learning/*.py
+          git diff-index --quiet HEAD || git commit -m "chore: make python scripts executable"
+          git push
