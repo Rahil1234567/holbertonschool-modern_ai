@@ -3,7 +3,6 @@
 This module contains the function optimal_k.
 """
 from sklearn import metrics
-# Assuming K_Means is in the same directory, imported via __import__
 K_Means = __import__('2-k_means').K_Means
 
 
