@@ -19,20 +19,17 @@ def Agglomerative_Clustering(X, n_clusters, random_state=None,
         use_pca_data (bool): Whether to apply PCA.
 
     Returns:
-        tuple: (fitted_model, X_data, silhouette_score)
+        tuple: (fitted_model, X_used, silhouette_score)
     """
-    # 1. Dimensionality Reduction
     if use_pca_data:
         X_used, _ = Apply_PCA(X, n_components=n_components,
                               random_state=random_state)
     else:
         X_used = X
 
-    # 2. Clustering
     model = cluster.AgglomerativeClustering(n_clusters=n_clusters)
     model.fit(X_used)
 
-    # 3. Evaluation
     score = None
     if n_clusters > 1:
         score = metrics.silhouette_score(X_used, model.labels_)
