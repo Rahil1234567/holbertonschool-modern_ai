@@ -1,8 +1,10 @@
+cat << 'EOF' > 4-agglomerative.py
 #!/usr/bin/env python3
 """
 This module contains the function Agglomerative_Clustering.
 """
-from sklearn import cluster, metrics
+from sklearn import cluster
+from sklearn import metrics
 Apply_PCA = __import__('1-pca').Apply_PCA
 
 
@@ -35,3 +37,4 @@ def Agglomerative_Clustering(X, n_clusters, random_state=None,
         score = metrics.silhouette_score(X_used, model.labels_)
 
     return model, X_used, score
+EOF
