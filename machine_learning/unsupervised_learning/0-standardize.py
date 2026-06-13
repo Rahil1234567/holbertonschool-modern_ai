@@ -1,37 +1,19 @@
-$ cat 0-main.py
 #!/usr/bin/env python3
-
-import numpy as np
-import pandas as pd
-import seaborn as sns
-import matplotlib.pyplot as plt
-
-from sklearn.datasets import load_wine
-Standardize = __import__('0-standardize').Standardize
-
-X, _ = load_wine(return_X_y=True)
-feature_names = load_wine().feature_names
-
-X_scaled = Standardize(X)
-
-X_df = pd.DataFrame(X, columns=feature_names)
-X_scaled_df = pd.DataFrame(X_scaled, columns=feature_names)
+"""
+This module contains the Standardize function.
+"""
+from sklearn import preprocessing
 
 
-sns.set(style="whitegrid")
+def Standardize(X):
+    """
+    Standardizes tabular data using Scikit-learn.
 
-plt.figure(figsize=(14, 10))
-sns.boxplot(data=X_df)
-plt.title("Feature Distribution Before Standardization")
-plt.xticks(rotation=90)
-plt.tight_layout()
-plt.show()
+    Args:
+        X (numpy.ndarray): The tabular data to be standardized.
 
-plt.figure(figsize=(14, 10))
-sns.boxplot(data=X_scaled_df)
-plt.title("Feature Distribution After Standardization")
-plt.xticks(rotation=90)
-plt.tight_layout()
-plt.show()
-
-$ ./0-main.py
+    Returns:
+        numpy.ndarray: The standardized version of the input data.
+    """
+    scaler = preprocessing.StandardScaler()
+    return scaler.fit_transform(X)
